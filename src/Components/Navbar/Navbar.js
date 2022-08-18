@@ -8,6 +8,13 @@ import "./Navbar.css"
 
 const Navbar = ({ loginState, Logout }) => {
 
+    // checking if the user is loggedin or not
+    if(window.localStorage.getItem("isLoggedin")){
+        loginState = "logged";
+    }else{
+        loginState = "notlogged";
+    }
+
     return (
         <div>
             <header>

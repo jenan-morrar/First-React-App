@@ -12,8 +12,9 @@ function Login ({LoginTest, error}) {
 
     const submitHandler =e=>{
         e.preventDefault();
-        LoginTest(details);
-        navigate("/");
+        if(LoginTest(details)){
+            navigate("/");
+        }
     }
     return (
         <div className="Main-container">
@@ -27,7 +28,6 @@ function Login ({LoginTest, error}) {
                     <form className="login-form" onSubmit={submitHandler}>
                         <span className="login-form-title">Login</span>
  
-                        {(error !== "") ? (<div>{error}</div>):("")}
                         <div className="wrap-input">
                             <input type="text" className="input" name="email" placeholder="Email" onChange={e=>setDetails({...details, email:e.target.value})} value={details.email} required />
                             <span className="focus-input"></span>
@@ -42,6 +42,8 @@ function Login ({LoginTest, error}) {
                             <RiLockPasswordLine/>
                             </span>
                         </div>
+
+                        {(error !== "") ? (<div className="error-style">{error}</div>):("")}
 
                         <div className="login-form-btn-container">
                             <button type="submit" className="login-form-btn">Login</button>

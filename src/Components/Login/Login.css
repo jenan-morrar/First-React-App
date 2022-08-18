@@ -11,6 +11,11 @@
     margin: 0 auto;
 }
 
+.error-style{
+    color: crimson;
+    text-align: center;
+}
+
 .container-login{
     width: 100%;
     min-height: 100vh;

@@ -7,7 +7,7 @@ import Contact from './Components/Contact/Contact';
 import Services from './Components/Services/Services';
 import Login from './Components/Login/Login';
 import Registration from './Components/Registration/Registration';
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 
 function App() {
 
@@ -16,38 +16,33 @@ function App() {
     password: "admin"
   }
   const [loginState, setLoginState] = useState("");
-  const [user, setUser] = useState({ email: "", password: "" });
+  // const [user, setUser] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
 
   const LoginTest = details => {
     console.log(details);
     if (details.email === admainUser.email && details.password === admainUser.password) {
       console.log("Looged in");
-      // localStorage.setItem('login', details.email);
-      window.sessionStorage.setItem("login", user);
+      window.localStorage.setItem("isLoggedin", true);
       setLoginState("logged");
-      setUser({
-        email: details.email,
-        password: details.password
-      })
+
+      return true;
+      // setUser({
+      //   email: details.email,
+      //   password: details.password
+      // })
 
     } else {
       console.log("Dosen't  match!");
-      setError("Dosen't  match!");
+      setError("Incorrect Email or Password!");
+      return false;
     }
   }
 
-  useEffect(() => {
-    const loggedInUser = localStorage.getItem("user");
-    if (loggedInUser) {
-      const foundUser = JSON.parse(loggedInUser);
-      setUser(foundUser);
-    }
-  }, []);
-
   const Logout = () => {
     console.log("Logout");
-    setUser({ email: "", password: "" });
+    window.localStorage.removeItem("isLoggedin");
+    // setUser({ email: "", password: "" });
     setLoginState("not logged");
   }
 
@@ -55,12 +50,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
 
-        {(user.email !== "") ? (
-          <Navbar loginState={loginState} Logout={Logout} />
-        ) : (
-          <Navbar loginState={loginState} Logout={Logout} />
-        )
-        }
+      <Navbar loginState={loginState} Logout={Logout} />
         <Routes>
           <Route exact path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
