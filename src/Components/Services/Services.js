@@ -39,8 +39,16 @@ const Services = () => {
     const updateForm = (id) => {
         const user = apiData.find(x => x.id === id);
         setUser(user);
-        document.getElementById('username').placeholder = user.username;
-        document.getElementById('email').placeholder = user.email;
+
+        window.localStorage.setItem('username', user.username);
+        window.localStorage.setItem('email', user.email);
+
+        document.getElementById('username').value = window.localStorage.getItem('username');
+        document.getElementById('email').value = window.localStorage.getItem('email');
+
+        setUsername(document.getElementById('username').value);
+        setEmail(document.getElementById('email').value);
+
         document.querySelector('.bg-modal').style.display = "flex";
     }
 
