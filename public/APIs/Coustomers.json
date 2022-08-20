@@ -1,0 +1,19 @@
+{
+    "coustomers": [
+        {
+            "id": 1,
+            "username": "ahmad",
+            "email": "ahmad@mail.com"
+        },
+        {
+            "id": 1,
+            "username": "laila",
+            "email": "laila@mail.com"
+        },
+        {
+            "id": 1,
+            "username": "ali",
+            "email": "ali@mail.com"
+        }
+    ]
+}

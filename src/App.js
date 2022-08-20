@@ -25,6 +25,7 @@ function App() {
       console.log("Looged in");
       window.localStorage.setItem("isLoggedin", true);
       setLoginState("logged");
+      setError("");
 
       return true;
       // setUser({
